@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import auth_users, jwt_auth_users
+from routes import jwt_auth_users
 
 app = FastAPI()
 
