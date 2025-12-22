@@ -7,21 +7,14 @@ from models.orden import Orden
 from logic.logica_mesero import LogicaMesero
 
 
-router = APIRouter()
+router = APIRouter( tags= [ "Mesero" ] )
 
 def isMesero( rol: int ):
     return rol == 'MESERO'
 
-def meseroActual():
-    pass
 
 @router.post( '/order/{id_sede}', status_code=status.HTTP_201_CREATED )
 async def create_order( orden: Orden, id_sede: int, usuario: Usuario = Depends( current_user )):
-    
-    if usuario == None: raise HTTPException(
-        detail="Por favor inicia sesion",
-        status_code=status.HTTP_400_BAD_REQUEST
-    )
     
     if not isMesero( usuario.rol ): raise HTTPException(
         detail="Usuario no autorizado para realizar esta acción",

@@ -8,8 +8,8 @@ class OrdenPlatos(BaseModel):
 
 class Orden(BaseModel):
     id_orden: Optional[int] = None
-    # id_sesion: int
-    pagado: Optional[bool] = None
-    preparado: Optional[bool] = None
     platos: List[OrdenPlatos]
+    # id_sesion: int
+    # pagado: Optional[bool] = None
+    # preparado: Optional[bool] = None
     

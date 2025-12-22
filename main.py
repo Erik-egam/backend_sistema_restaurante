@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes import jwt_auth_users, mesero
+from routes import jwt_auth_users, mesero, cocina
 
 app = FastAPI()
 
 # app.include_router( auth_users.router )
 app.include_router( jwt_auth_users.router )
 app.include_router( mesero.router )
+app.include_router( cocina.router )
 
 app.add_middleware(
     CORSMiddleware,
