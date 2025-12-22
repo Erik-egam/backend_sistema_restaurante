@@ -1,4 +1,4 @@
-from config.dbconfig import cnx
+from config.dbconfig import get_conexion
 from mysql.connector import Error
 from fastapi import HTTPException, status
 from models.usuario import Usuario, UsuarioDb
@@ -6,6 +6,7 @@ from models.usuario import Usuario, UsuarioDb
 
 class LogicaUsuario:
     def buscar_usuario_db( cedula: str ):
+        cnx = get_conexion()
         cursor = cnx.cursor()
         try:
             cursor.execute(
@@ -32,8 +33,14 @@ class LogicaUsuario:
                 detail=f"{e}",
                 status_code=status.HTTP_400_BAD_REQUEST
             )
+        
+        finally:
+            cursor.close()
+            cnx.close()
+            
             
     def buscar_usuario(cedula: str):
+        cnx = get_conexion()
         cursor = cnx.cursor()
         try:
             cursor.execute(
@@ -59,3 +66,7 @@ class LogicaUsuario:
                 detail=f"{e}",
                 status_code=status.HTTP_400_BAD_REQUEST
             )
+
+        finally:
+            cursor.close()
+            cnx.close()
