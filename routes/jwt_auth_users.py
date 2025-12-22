@@ -30,8 +30,6 @@ async def usuario_autenticado( token: str = Depends( oauth2 )):
         if cedula is None:
             raise exception
         
-        
-
     except JWTError as e:
         raise exception
     
