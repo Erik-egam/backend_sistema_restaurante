@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class OrdenPlatos(BaseModel):
@@ -7,9 +7,9 @@ class OrdenPlatos(BaseModel):
     cantidad: int
 
 class Orden(BaseModel):
-    id_orden: int
-    id_sesion: int
-    pagado: bool
-    preparado: bool
+    id_orden: Optional[int] = None
+    # id_sesion: int
+    pagado: Optional[bool] = None
+    preparado: Optional[bool] = None
     platos: List[OrdenPlatos]
     
